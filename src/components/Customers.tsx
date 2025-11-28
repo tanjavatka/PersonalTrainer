@@ -18,7 +18,7 @@ function Customers() {
         { field: "lastname", width: 130, headerName: "Last name" },
         { field: "email", width: 200, headerName: "Email" },
         { field: "phone", width: 120, headerName: "Phone" },
-        { field: "address", width: 200, headerName: "Address" },
+        { field: "streetaddress", width: 200, headerName: "Address" },
         { field: "postcode", width: 100, headerName: "Postcode" },
         { field: "city", width: 120, headerName: "City" },
     ]
