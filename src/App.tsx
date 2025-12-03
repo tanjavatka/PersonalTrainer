@@ -12,7 +12,7 @@ import Stack from "@mui/material/Stack"
 function App() {
 
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" >
       <AppBar position="static">
         <Toolbar>
           <Typography fontSize={25}> Personal Trainer </Typography>
@@ -20,10 +20,21 @@ function App() {
       </AppBar>
 
       <nav>
-        <Stack direction="row" spacing={3} sx={{ m: 3 }}>
+        <Stack direction="row" spacing={3} sx={{ m: 3 }} >
 
           <NavLink
             to={'/'}
+            style={({ isActive }: { isActive: boolean }) => ({
+              textDecoration: "none",
+              color: "black",
+              fontWeight: isActive ? "bold" : "normal"
+            })}
+          >
+            Home
+          </NavLink>
+
+          <NavLink
+            to={'/customers'}
             style={({ isActive }: { isActive: boolean }) => ({
               textDecoration: "none",
               color: "black",

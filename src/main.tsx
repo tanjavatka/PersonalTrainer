@@ -7,6 +7,7 @@ import Customers from './components/Customers.tsx';
 import Trainings from './components/Trainings.tsx';
 import Calendar from './components/Calendar.tsx';
 import Error from './components/Error.tsx';
+import Home from './components/Home.tsx';
 
 const router = createBrowserRouter([
   {
@@ -15,8 +16,12 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       {
-        element: <Customers />,
+        element: <Home />,
         index: true,
+      },
+      {
+        path: "customers",
+        element: <Customers />,
       },
       {
         path: "trainings",
