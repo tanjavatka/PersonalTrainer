@@ -17,14 +17,14 @@ function Customers() {
         { field: "firstname", width: 130, headerName: "First name" },
         { field: "lastname", width: 130, headerName: "Last name" },
         { field: "email", width: 200, headerName: "Email" },
-        { field: "phone", width: 120, headerName: "Phone" },
+        { field: "phone", width: 150, headerName: "Phone" },
         { field: "streetaddress", width: 200, headerName: "Address" },
         { field: "postcode", width: 100, headerName: "Postcode" },
         { field: "city", width: 120, headerName: "City" },
     ]
 
     return (
-        <div>
+        <div style={{ height: 600, width: '95%', margin: 'auto' }}>
             <DataGrid
                 rows={customers}
                 columns={columns}

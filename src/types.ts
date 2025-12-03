@@ -21,7 +21,7 @@ export type Customer = {
 
 export type TrainingSession = {
     date: Date;         // date & time
-    duration: Date;     // minutes
+    duration: number;     // minutes
     activity: string;
     _links: {
         self: {
@@ -35,6 +35,9 @@ export type TrainingSession = {
         },
     }
 }
+
+export type CustomerForm = Omit<Customer, "_links">;
+export type TrainingSessionForm = Omit<TrainingSession, "_links">;
 
 
 // customers linkki:
