@@ -6,6 +6,8 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import type { CustomerForm, Customer } from '../types';
+import IconButton from '@mui/material/IconButton';
+import EditIcon from '@mui/icons-material/Edit';
 
 type EditCustomerProps = {
     fetchCustomers: () => void;
@@ -76,9 +78,9 @@ export default function EditCustomer({ fetchCustomers, customerRow }: EditCustom
 
     return (
         <>
-            <Button size="small" onClick={handleClickOpen}>
-                Edit
-            </Button>
+            <IconButton size="small" sx={{ m: 1 }} onClick={handleClickOpen}>
+                <EditIcon />
+            </IconButton>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Edit customer</DialogTitle>
                 <DialogContent>

@@ -1,5 +1,11 @@
-import { DataGrid, type GridColDef } from "@mui/x-data-grid";
+import { DataGrid, type GridColDef, type GridRenderCellParams } from "@mui/x-data-grid";
 import { useEffect, useState } from "react";
+import { deleteCustomer, getCustomers } from "../customerApi";
+import IconButton from "@mui/material/IconButton";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditCustomer from "./EditCustomer";
+import AddCustomer from "./AddCustomer";
+import AddTraining from "./AddTraining";
 
 function Customers() {
 
@@ -11,26 +17,75 @@ function Customers() {
             .then(data => setCustomers(data._embedded.customers))
     }, []);
 
+    useEffect(() => {
+        fetchCustomers();
+    }, []);
+
+    const fetchCustomers = () => {
+        getCustomers()
+            .then(data => setCustomers(data._embedded.customers))
+            .catch(err => console.error(err))
+    }
+
+    const handleDelete = (url: string) => {
+        if (window.confirm("Are you sure?")) {
+            deleteCustomer(url)
+                .then(() => fetchCustomers())
+                .catch(err => console.error(err))
+        }
+    }
+
     console.log(customers);
 
     const columns: GridColDef[] = [
-        { field: "firstname", width: 130, headerName: "First name" },
-        { field: "lastname", width: 130, headerName: "Last name" },
-        { field: "email", width: 200, headerName: "Email" },
-        { field: "phone", width: 150, headerName: "Phone" },
-        { field: "streetaddress", width: 200, headerName: "Address" },
-        { field: "postcode", width: 100, headerName: "Postcode" },
-        { field: "city", width: 120, headerName: "City" },
-    ]
+        {
+            headerName: "Actions",
+            width: 230,
+            sortable: false,
+            filterable: false,
+            field: '_links.self.href',
+            renderCell: (params: GridRenderCellParams) => {
+                return (
+                    <>
+                        <IconButton size="small" sx={{ m: 1 }} onClick={() => handleDelete(params.id as string)}>
+                            <DeleteIcon />
+                        </IconButton>
+                        <EditCustomer
+                            customerRow={params.row}
+                            fetchCustomers={fetchCustomers}
+                        />
+                        <AddTraining
+                            fetchTraining={fetchCustomers}
+                        />
+                    </>
+                );
+            }
+        },
+
+        { field: "firstname", headerName: "First name" },
+        { field: "lastname", headerName: "Last name" },
+        { field: "email", width: 180, headerName: "Email" },
+        { field: "phone", width: 160, headerName: "Phone" },
+        { field: "streetaddress", width: 170, headerName: "Address" },
+        { field: "postcode", headerName: "Postcode" },
+        { field: "city", headerName: "City" },
+    ];
 
     return (
-        <div style={{ height: 600, width: '95%', margin: 'auto' }}>
-            <DataGrid
-                rows={customers}
-                columns={columns}
-                getRowId={(row) => row._links.self.href}
-            />
-        </div>
+        <>
+            <div style={{ height: 600, margin: 'auto', textAlign: 'right' }}>
+                <AddCustomer fetchCustomers={fetchCustomers} />
+                <DataGrid
+                    rows={customers}
+                    columns={columns}
+                    getRowId={(row) => row._links.self.href}
+                    showToolbar
+                    sx={{
+                        boxShadow: 2,
+                    }}
+                />
+            </div >
+        </>
     )
 }
 

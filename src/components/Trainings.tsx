@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { deleteTraining } from "../trainingapi";
+import { deleteTraining, getTrainings } from "../trainingapi";
 
 
 function Trainings() {
@@ -21,38 +21,52 @@ function Trainings() {
         return dayjs(dateString).format("DD.MM.YYYY HH:mm");
     };
 
+    // useEffect(() => {
+    //     fetchTrainings();
+    // }, []);
+
+    const fetchTrainings = () => {
+        getTrainings()
+            .then(data => setTrainings(data._embedded.trainings))
+            .catch(err => console.error(err))
+    }
+
     const handleDelete = (url: string) => {
         if (window.confirm("Are you sure?")) {
             deleteTraining(url)
-            // .then(() => fetchTrainings())
-            // .catch(error => console.error(error))
+                .then(() => fetchTrainings())
+                .catch(error => console.error(error))
         }
     }
 
     const columns: GridColDef[] = [
+        {
+            //field: 'actions', width: 100,
+            headerName: "Actions",
+            sortable: false,
+            filterable: false,
+            field: '_links.self.href',
+            renderCell: (params: GridRenderCellParams) =>
+                <IconButton size="small" onClick={() => handleDelete(params.row.id as string)}>
+                    <DeleteIcon />
+                </IconButton>
+        },
         { field: "activity", width: 200, headerName: "Activity" },
         { field: "date", width: 200, headerName: "Date", valueFormatter: ({ value }) => formatDate(value) },
         { field: "duration", headerName: "Duration" },
         { field: "customer", width: 200, headerName: "Customer" },
-        {
-            field: 'actions', width: 100,
-            headerName: "Actions",
-            sortable: false,
-            filterable: false,
-            //field: '_links.self.href',
-            renderCell: (params: GridRenderCellParams) =>
-                <IconButton color="error" size="small" onClick={() => handleDelete(params.row.id as string)}>
-                    <DeleteIcon />
-                </IconButton>
-        },
+
     ]
 
     return (
+
         <div style={{ height: 600, width: '95%', margin: 'auto' }}>
             <DataGrid
                 rows={trainings}
                 columns={columns}
-                getRowId={(row) => row._links.self.href}
+                getRowId={row => row._links.self.href}
+                autoPageSize
+                rowSelection={false}
             />
         </div>
 

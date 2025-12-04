@@ -7,6 +7,8 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import type { CustomerForm } from '../types';
 import { saveCustomer } from '../customerApi';
+import IconButton from '@mui/material/IconButton';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 
 type AddCustomerProps = {
     fetchCustomers: () => void;
@@ -57,9 +59,9 @@ export default function AddCustomer({ fetchCustomers }: AddCustomerProps) {
 
     return (
         <>
-            <Button variant="outlined" onClick={handleClickOpen}>
-                Add Car
-            </Button>
+            <IconButton size="small" onClick={handleClickOpen} sx={{ fontFamily: 'Arial', fontSize: '0.9rem', fontWeight: '600' }}>
+                <AddBoxIcon /> Customer
+            </IconButton>
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle>Add new customer</DialogTitle>
                 <DialogContent>

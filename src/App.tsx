@@ -20,7 +20,7 @@ function App() {
       </AppBar>
 
       <nav>
-        <Stack direction="row" spacing={3} sx={{ m: 3 }} >
+        <Stack direction="row" spacing={3} sx={{ m: 3, mt: 5, flexGrow: 1, justifyContent: "center" }}>
 
           <NavLink
             to={'/'}
