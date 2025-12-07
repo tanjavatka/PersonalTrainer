@@ -3,17 +3,17 @@ import { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { deleteTraining, getTrainings } from "../trainingapi";
+import { deleteTraining, getTrainings } from "../trainingApi";
 
 
 function Trainings() {
     const [trainings, setTrainings] = useState([]);
 
-    useEffect(() => {
-        fetch("https://customer-rest-service-frontend-personaltrainer.2.rahtiapp.fi/api/trainings")
-            .then(response => response.json())
-            .then(data => setTrainings(data._embedded.trainings))
-    }, []);
+    // useEffect(() => {
+    //     fetch("https://customer-rest-service-frontend-personaltrainer.2.rahtiapp.fi/api/trainings")
+    //         .then(response => response.json())
+    //         .then(data => setTrainings(data._embedded.trainings))
+    // }, []);
 
     console.log(trainings);
 
@@ -21,9 +21,9 @@ function Trainings() {
         return dayjs(dateString).format("DD.MM.YYYY HH:mm");
     };
 
-    // useEffect(() => {
-    //     fetchTrainings();
-    // }, []);
+    useEffect(() => {
+        fetchTrainings();
+    }, []);
 
     const fetchTrainings = () => {
         getTrainings()
@@ -47,12 +47,20 @@ function Trainings() {
             filterable: false,
             field: '_links.self.href',
             renderCell: (params: GridRenderCellParams) =>
-                <IconButton size="small" onClick={() => handleDelete(params.row.id as string)}>
+                <IconButton
+                    size="small"
+                    onClick={() => handleDelete(params.row.id as string)}
+                >
                     <DeleteIcon />
                 </IconButton>
         },
         { field: "activity", width: 200, headerName: "Activity" },
-        { field: "date", width: 200, headerName: "Date", valueFormatter: ({ value }) => formatDate(value) },
+        {
+            field: "date",
+            width: 200,
+            headerName: "Date",
+            valueFormatter: ({ value }) => formatDate(value)
+        },
         { field: "duration", headerName: "Duration" },
         { field: "customer", width: 200, headerName: "Customer" },
 

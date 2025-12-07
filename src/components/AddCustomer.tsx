@@ -127,9 +127,7 @@ export default function AddCustomer({ fetchCustomers }: AddCustomerProps) {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={handleSave}>
-                        Save
-                    </Button>
+                    <Button onClick={handleSave}>Save</Button>
                 </DialogActions>
             </Dialog>
         </>

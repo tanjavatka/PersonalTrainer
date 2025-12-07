@@ -11,11 +11,11 @@ function Customers() {
 
     const [customers, setCustomers] = useState([]);
 
-    useEffect(() => {
-        fetch("https://customer-rest-service-frontend-personaltrainer.2.rahtiapp.fi/api/customers")
-            .then(response => response.json())
-            .then(data => setCustomers(data._embedded.customers))
-    }, []);
+    // useEffect(() => {
+    //     fetch("https://customer-rest-service-frontend-personaltrainer.2.rahtiapp.fi/api/customers")
+    //         .then(response => response.json())
+    //         .then(data => setCustomers(data._embedded.customers))
+    // }, []);
 
     useEffect(() => {
         fetchCustomers();
@@ -47,7 +47,11 @@ function Customers() {
             renderCell: (params: GridRenderCellParams) => {
                 return (
                     <>
-                        <IconButton size="small" sx={{ m: 1 }} onClick={() => handleDelete(params.id as string)}>
+                        <IconButton
+                            size="small"
+                            sx={{ m: 1 }}
+                            onClick={() => handleDelete(params.id as string)}
+                        >
                             <DeleteIcon />
                         </IconButton>
                         <EditCustomer

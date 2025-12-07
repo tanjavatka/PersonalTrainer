@@ -6,9 +6,9 @@ import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import type { TrainingSessionForm } from '../types';
-import { saveTraining } from '../trainingapi';
 import IconButton from '@mui/material/IconButton';
 import AddBoxIcon from '@mui/icons-material/AddBox';
+import { saveTraining } from '../trainingApi';
 
 type AddTrainingProps = {
     fetchTraining: () => void;
@@ -17,7 +17,7 @@ type AddTrainingProps = {
 export default function AddTraining({ fetchTraining }: AddTrainingProps) {
     const [open, setOpen] = useState(false);
     const [training, setTraining] = useState<TrainingSessionForm>({
-        date: "" as unknown as Date,
+        date: "",
         duration: 0,
         activity: "",
     });
@@ -30,7 +30,7 @@ export default function AddTraining({ fetchTraining }: AddTrainingProps) {
     const handleClose = () => {
         setOpen(false);
         setTraining({
-            date: "" as unknown as Date,
+            date: "",
             duration: 0,
             activity: "",
         });
@@ -65,7 +65,7 @@ export default function AddTraining({ fetchTraining }: AddTrainingProps) {
                         required
                         type="datetime-local"
                         value={training.date}
-                        onChange={event => setTraining({ ...training, date: event.target.value as unknown as Date })}
+                        onChange={event => setTraining({ ...training, date: event.target.value })}
                         fullWidth
                         variant="standard"
                     />
@@ -90,10 +90,8 @@ export default function AddTraining({ fetchTraining }: AddTrainingProps) {
                     />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={handleSave}>
-                        Save
-                    </Button>
+                    <Button onClick={handleClose}> Cancel </Button>
+                    <Button onClick={handleSave}> Save </Button>
                 </DialogActions>
             </Dialog>
         </>

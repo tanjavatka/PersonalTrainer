@@ -149,10 +149,8 @@ export default function EditCustomer({ fetchCustomers, customerRow }: EditCustom
                     />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={handleSave}>
-                        Save
-                    </Button>
+                    <Button onClick={handleClose}> Cancel </Button>
+                    <Button onClick={handleSave}> Save </Button>
                 </DialogActions>
             </Dialog>
         </>

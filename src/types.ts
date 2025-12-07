@@ -20,7 +20,7 @@ export type Customer = {
 }
 
 export type TrainingSession = {
-    date: Date;         // date & time
+    date: string;         // date & time
     duration: number;     // minutes
     activity: string;
     _links: {
