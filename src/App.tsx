@@ -70,6 +70,17 @@ function App() {
             Calendar
           </NavLink>
 
+          <NavLink
+            to={'/statistics'}
+            style={({ isActive }: { isActive: boolean }) => ({
+              textDecoration: "none",
+              color: "black",
+              fontWeight: isActive ? "bold" : "normal"
+            })}
+          >
+            Statistics
+          </NavLink>
+
         </Stack>
       </nav>
       <Outlet context={{ customers, setCustomers }} />

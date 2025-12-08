@@ -88,7 +88,7 @@ function Customers() {
 
     return (
         <>
-            <div style={{ height: 600, margin: 'auto', textAlign: 'right' }}>
+            <div style={{ height: 700, margin: 'auto', textAlign: 'right' }}>
                 <AddCustomer fetchCustomers={fetchCustomers} />
                 <DataGrid
                     rows={customers}

@@ -8,6 +8,7 @@ import Trainings from './components/Trainings.tsx';
 import Calendar from './components/Calendar.tsx';
 import Error from './components/Error.tsx';
 import Home from './components/Home.tsx';
+import TrainingStatistics from './components/TrainingStatistics.tsx';
 
 const router = createBrowserRouter([
   {
@@ -30,6 +31,11 @@ const router = createBrowserRouter([
       {
         path: "calendar",
         element: <Calendar />,
+      },
+
+      {
+        path: "statistics",
+        element: <TrainingStatistics />,
       },
     ]
   },

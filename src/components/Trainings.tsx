@@ -104,7 +104,7 @@ function Trainings() {
 
     return (
 
-        <div style={{ height: 600, width: '95%', margin: 'auto' }}>
+        <div style={{ height: 700, width: '95%', margin: 'auto' }}>
             <DataGrid
                 rows={trainings}
                 columns={columns}

@@ -23,7 +23,10 @@ export type TrainingSession = {
     date: string;         // date & time
     duration: number;     // minutes
     activity: string;
-    customer: string;   // link to customer
+    customer: {
+        firstname: string;
+        lastname: string;
+    }
     _links: {
         self: {
             href: string;
@@ -35,6 +38,17 @@ export type TrainingSession = {
             href: string;
         },
     }
+}
+
+export type CalendarEvent = {
+    title: string;
+    start: Date;
+    end: Date;
+}
+
+export type ActivityStatistics = {
+    activity: string;
+    totalMinutes: number;
 }
 
 export type CustomerForm = Omit<Customer, "_links">;
