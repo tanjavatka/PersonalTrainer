@@ -8,9 +8,13 @@ import Toolbar from "@mui/material/Toolbar"
 import Typography from "@mui/material/Typography"
 
 import Stack from "@mui/material/Stack"
+import type { Customer } from './types'
+import { useState } from 'react'
+//import Reset from './reset'
+
 
 function App() {
-
+  const [customers, setCustomers] = useState<Customer[]>([]);
   return (
     <Container maxWidth="lg" >
       <AppBar position="static">
@@ -68,8 +72,8 @@ function App() {
 
         </Stack>
       </nav>
-      <Outlet />
-
+      <Outlet context={{ customers, setCustomers }} />
+      {/* <Reset /> */}
       <CssBaseline />
     </Container>
   )

@@ -23,6 +23,7 @@ export type TrainingSession = {
     date: string;         // date & time
     duration: number;     // minutes
     activity: string;
+    customer: string;   // link to customer
     _links: {
         self: {
             href: string;

@@ -6,6 +6,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditCustomer from "./EditCustomer";
 import AddCustomer from "./AddCustomer";
 import AddTraining from "./AddTraining";
+import type { TrainingSessionForm } from "../types";
+import { saveTraining } from "../trainingApi";
 
 function Customers() {
 
@@ -28,12 +30,20 @@ function Customers() {
     }
 
     const handleDelete = (url: string) => {
-        if (window.confirm("Are you sure?")) {
+        if (window.confirm("Are you sure you want to delete this customer?")) {
             deleteCustomer(url)
                 .then(() => fetchCustomers())
                 .catch(err => console.error(err))
         }
     }
+
+    const handleSaveTraining = (training: TrainingSessionForm) => {
+        return saveTraining(training)
+            .then(() => {
+                alert("Training added successfully!")
+            })
+            .catch(err => console.error(err))
+    };
 
     console.log(customers);
 
@@ -59,7 +69,8 @@ function Customers() {
                             fetchCustomers={fetchCustomers}
                         />
                         <AddTraining
-                            fetchTraining={fetchCustomers}
+                            handleSaveTraining={handleSaveTraining}
+                            customerUrl={params.row._links.self.href}
                         />
                     </>
                 );

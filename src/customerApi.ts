@@ -10,6 +10,15 @@ export function getCustomers() {
         })
 }
 
+export function getOneCustomerByUrl(url: string) {
+    return fetch(url)
+        .then(response => {
+            if (!response.ok)
+                throw new Error("Error when retieving customer: " + response.statusText);
+            return response.json();
+        });
+}
+
 export function deleteCustomer(url: string) {
     return fetch(url, { method: "DELETE" })
         .then(response => {

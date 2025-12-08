@@ -10,8 +10,22 @@ export function getTrainings() {
         })
 }
 
+export const getTrainingsWithCustomers = async () => {
+    return fetch(import.meta.env.VITE_API_URL + "/gettrainings", {
+        method: "GET",
+        headers: { "content-type": "application/json" },
+    })
+        .then(response => {
+            if (!response.ok)
+                throw new Error("Error when adding a new training");
+
+            return response.json();
+        })
+};
+
 export function deleteTraining(url: string) {
-    return fetch(url, { method: "DELETE" })
+    return fetch(import.meta.env.VITE_API_URL + '/trainings/' + url,
+        { method: "DELETE" })
         .then(response => {
             if (!response.ok)
                 throw new Error("Error when deleting training: " + response.statusText);
