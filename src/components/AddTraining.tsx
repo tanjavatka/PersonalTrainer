@@ -58,9 +58,9 @@ export default function AddTraining({ handleSaveTraining, customerUrl }: AddTrai
 
     };
 
-    const formatDate = (dateString: string) => {
-        return dayjs(dateString).format("DD.MM.YYYY HH:mm");
-    };
+    // const formatDate = (dateString: string) => {
+    //     return dayjs(dateString).format("DD.MM.YYYY HH:mm");
+    // };
 
     return (
         <>
@@ -123,18 +123,3 @@ export default function AddTraining({ handleSaveTraining, customerUrl }: AddTrai
         </>
     );
 }
-
-
-
-{/* <LocalizationProvider dateAdapter={AdapterDayjs}>
-    <DateTimePicker
-        label="Date"
-        value={training.date ? dayjs(training.date) : null}
-        onChange={(newValue) => {
-            setTraining({
-                ...training,
-                date: newValue ? newValue.format('') : ''
-            });
-        }}
-    />
-</LocalizationProvider> */}

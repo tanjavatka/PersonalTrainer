@@ -25,9 +25,9 @@ function Trainings() {
 
 
 
-    const formatDate = (dateString: string) => {
-        return dayjs(dateString).format("DD.MM.YYYY HH:mm");
-    };
+    // const formatDate = (dateString: string) => {
+    //     return dayjs(dateString).format("DD.MM.YYYY HH:mm");
+    // };
 
     useEffect(() => {
         fetchTrainings();
@@ -44,13 +44,6 @@ function Trainings() {
             console.error(error);
         }
     };
-
-
-    // const fetchTrainings = () => {
-    //     getTrainings()
-    //         .then(data => setTrainings(data._embedded.trainings))
-    //         .catch(err => console.error(err))
-    // }
 
     const handleDelete = (url: string) => {
         if (window.confirm("Are you sure you want to delete this training?")) {

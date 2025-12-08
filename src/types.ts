@@ -1,3 +1,4 @@
+
 export type Customer = {
     firstname: string;
     lastname: string;
@@ -23,10 +24,7 @@ export type TrainingSession = {
     date: string;         // date & time
     duration: number;     // minutes
     activity: string;
-    customer: {
-        firstname: string;
-        lastname: string;
-    }
+    customer: string;
     _links: {
         self: {
             href: string;

@@ -20,6 +20,13 @@ const localizer = dateFnsLocalizer({
     locales,
 });
 
+type TrainingWithCustomer = TrainingSession & {
+    customer?: {
+        firstname: string;
+        lastname: string;
+    };
+};
+
 export default function Calendar() {
     const [events, setEvents] = useState<CalendarEvent[]>([]);
     const [date, setDate] = useState(new Date());
@@ -28,7 +35,7 @@ export default function Calendar() {
     useEffect(() => {
         const fetchTrainings = async () => {
             try {
-                const data: TrainingSession[] = await getTrainingsWithCustomers();
+                const data: TrainingWithCustomer[] = await getTrainingsWithCustomers();
 
                 const trainingEvents: CalendarEvent[] = data.map(t => {
                     const start = new Date(t.date);
